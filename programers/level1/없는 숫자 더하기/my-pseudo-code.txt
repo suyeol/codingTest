@@ -1,0 +1,8 @@
+
+int sum = 45;
+int total = 0;
+for int i = 0 to number.length do
+	total+= number[i]
+endfor
+
+answer = sum - total
