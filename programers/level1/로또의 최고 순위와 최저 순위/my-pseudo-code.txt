@@ -1,0 +1,28 @@
+
+0의 갯수 카운트
+0은 다 맞거나 틀리거나
+
+lottos와 win_nums에서 맞은 갯수 카운트
+			0  1  2  3  4  5  6
+int rank = {6, 6, 5, 4, 3, 2, 1};	//등수
+
+int correct = 0;
+int zeroCnt = 0;
+
+for int i= 0 to lottos do
+	if lottos[i] == 0
+		zeroCnt++
+	endif
+	
+	for int j =0 to win_nums do
+		if lottos[i] == win_nums[j]
+			corrrect++
+		endif
+	endfor
+endfor
+
+int highScore = correct + zeroCnt >= 6 ? 6 : correct + zeroCnt; //최대 6
+int lowScore = correct == 0 ? 0 : correct;	//최소 0
+
+answer[0] = rank[highScore];
+answer[1] = rank[lowScore];
