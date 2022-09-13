@@ -1,0 +1,70 @@
+전화번호 중, 한 번호가 다른 번호의 접두어인 경우가 있는지 확인하려 합니다.
+전화번호가 다음과 같을 경우, 구조대 전화번호는 영석이의 전화번호의 접두사입니다.
+
+구조대 : 119
+박준영 : 97 674 223
+지영석 : 11 9552 4421
+
+전화번호를 담은 배열 phone_book
+
+어떤 번호가 다른 번호의 접두어인 경우가 있으면 false 그렇지 않으면 true
+
+문자열 포함여부 확인
+
+1.길이순으로 정렬
+2.가장긴 문자.contains(순차적으로)
+
+
+** 접두어인 경우!!!
+문자열 포함보다는 처음 시작이 같아야 한다!!!
+
+phone_book을 해시테이블로 변환
+key : 0 ~ 9
+
+
+Hashtable<Character, ArrayList<String>> ht = new Hashtable<Character, ArrayList<String>>();
+
+for(int i = 0; i < phone_book.length; i++)
+{
+	//이미 들어있는 값이 있는지 확인
+	if(ht.containsKey(phone_book[i].charAt(0)))
+	{
+		ArrayList<String> tmp1 = ht.get(phone_book[i].charAt(0));
+		tmp1.add(phone_book[i]);
+		ht.put(phone_book[i].charAt(0), tmp1);
+	}
+	else
+	{
+		//들어있는 값이 없으면 put
+		ArrayList<String> tmp = new ArrayList<String>();
+		tmp.add(phone_book[i]);
+		ht.put(phone_book[i].charAt(0), tmp);
+	}
+}
+
+for (Map.Entry<Character, String[]> e: ht.entrySet())
+{
+	ArrayList<String> value = e.getValue();
+	Arrays.sort(value, Comparator.comparing(String::length));
+	
+	for(int i = value.length-1; i >= 0; i-- )
+	{
+		String main = value[i];
+		//for(int j = i-1; j >= 0; j--)
+		for(int j = 0; j < i; j++)
+		{
+			if(main.charAt(0) == value[j].charAt(0) && main.contains(value[j]))
+			{
+				answer = false;
+				break;
+			}
+		}
+		if(!answer)
+		{
+			break;
+		}
+	}	
+}
+
+
+
