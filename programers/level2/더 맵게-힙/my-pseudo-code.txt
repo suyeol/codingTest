@@ -1,0 +1,109 @@
+섞은 음식의 스코빌 지수 = 가장 맵지 않은 음식의 스코빌 지수 + (두 번째로 맵지 않은 음식의 스코빌 지수 * 2)
+Leo는 모든 음식의 스코빌 지수가 K 이상이 될 때까지 반복하여 섞습니다.
+
+Leo가 가진 음식의 스코빌 지수를 담은 배열 scoville
+원하는 스코빌 지수 K
+K 이상으로 만들기 위해 섞어야 하는 최소 횟수
+모든 음식의 스코빌 지수를 K 이상으로 만들 수 없는 경우에는 -1을 return
+
+ex)
+scoville				K	return
+[1, 2, 3, 9, 10, 12]	7	2
+
+1)
+1 + (2 * 2) = 5
+[5, 3, 9, 10, 12]
+
+2)
+3 + (5 * 2) = 13
+[13, 9, 10, 12]
+
+
+ArrayList<Integer> ascoville = new ArrayList<Integer>(); // 타입 지정
+
+for(int i = 0; i < scoville.length; i++)
+{
+	if(scoville[i] < 7)
+		ascoville.add(scoville[i]);
+}
+
+Collections.sort(ascoville);
+
+while(ascoville.size() > 1)
+{
+	int diffK = ascoville.get(0) + (ascoville.get(1) * 2);
+	answer++;
+	ascoville.remove(0);
+	ascoville.remove(1);
+	
+	if(diffK < 7)
+	{
+		ascoville.add(diffK);
+		Collections.sort(ascoville);
+	}	
+}
+
+if(ascoville.size() == 1)
+	return -1;
+else
+	return answer;
+
+
+
+
+
+
+
+
+
+
+
+
+            for(int i = 0; i < ascoville.size(); i++)
+            {
+                System.out.println(ascoville.get(i));
+
+            }
+            System.out.println("-----------"); 
+			
+[1,2,4,5,6,7,8,9,10]
+
+1 + 2 * 2 = 5
+
+5,4,5,6,7,8,9,10
+
+12
+4556
+
+3
+
+12456
+5
+4556
+
+56
+
+{1,2,3,4,5,6};
+1번루프
+diffK = 1 + 2*2 = 5;
+3456
+if(diffK < 7)
+{
+	34556
+}
+
+2번루프
+diffK = 3 + 4 * 2 = 11
+556
+if(diffK < 7)
+{
+	
+}
+
+3번루프
+diffK = 5 + 5 * 2 = 15
+6
+
+
+
+
