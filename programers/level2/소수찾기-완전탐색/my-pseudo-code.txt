@@ -1,0 +1,65 @@
+2차원배열
+
+{1,2,3,4}
+
+1
+	12
+		123
+			1234
+		124
+			1243
+	13
+		132
+			1324
+		134
+			1342
+	14
+		142
+			1423
+		143
+			1432
+
+[0,1,1]
+0
+	01
+		011
+	01
+		011
+		
+		
+1
+	17
+7
+	71
+
+
+
+완전탐색으로 조합을 모두 찾은 후 
+
+소수인지 확인 소수이면 answer++
+
+for 자릿수
+	자릿수의 모든 조합
+endfor	
+
+ArrayList allNumber;
+
+
+
+func FindAllNum(String inNum, String remindNum) {
+	if(remindNum.length == 0)
+		return;
+		
+	String newNum = inNum + remindNum[0];
+	String newRemindNum = remindNum.substring();
+	//newNum의 소수판별 answer++;
+	FindAllNum(newNum, newRemindNum);
+}
+
+for int i = 0; i < numbers.length; i++ {
+	String inNum = numbers[i];
+	String remindNum numbers.substring();
+	
+	FindAllNum(inNum, remindNum);
+}
+
